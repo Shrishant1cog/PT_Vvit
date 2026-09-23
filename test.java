@@ -1,8 +1,7 @@
-public class breakcontinue {
+public class test {
     public static void main(String[] args) {
 
-        squaren(10,15);
-
+     welcome("Shrishant", 19);
 
         
         
@@ -26,5 +25,16 @@ public class breakcontinue {
             System.out.println(i);
         }
 
+    }
+    //parametarized method
+    static int add(int a,int b) {
+        return a+b;
+
+        
+    }
+
+    static void welcome(String name,int age){
+        System.out.println("Welcome "+name+","+"You are "+age+" Old");
+        
     }
 }
