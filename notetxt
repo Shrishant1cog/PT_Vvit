@@ -1,3 +1,44 @@
 To find the length of the Array
-----> Arrayname.length
+----> Arrayname.length()
+size of list
+-----> listname.size();
 
+shallow compare (==) //compares memory address
+deep compare (.equals()) actual value
+
+
+time complexity or Big(O)notation
+   ex : arr = {3,5,6,7}
+
+   print(arr[3]);
+
+constant time complexity----------> O(1)
+    : explaination:
+    it directly prints arr[3] without knowing others 
+    have constant time or less
+    one iteration
+linear time complexity 
+    : explaination
+    time is dependent on no of iterations of single row and multuple colums
+    ----> time complexity is n 
+    ----->for one loop 
+    O(n)
+quadratic time complexity 
+    : explaination
+    time is depentant on no of iterations of multiple row and colums
+    ----> time complexity is square of n
+    ----->for two loops
+    O(n(square))
+factorial time complexity 
+    : explaination
+    time is depentant on n!
+    O(n!)
+exponential time complexity 
+    :explaination
+    n raise to n 
+    O(2 raise to n)
+
+logarithimic time complexity 
+    :explaination
+    O(log n)  
+example: binary search 

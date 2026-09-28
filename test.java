@@ -1,7 +1,8 @@
 public class test {
     public static void main(String[] args) {
 
-System.out.println(factorial(6));
+fibonacciR(10,0,1);
+
         
         
     }
@@ -245,16 +246,24 @@ System.out.println(factorial(6));
             }
             return n*factorial(n-1);
             
+            
         
             
 
 
-            
-           
-           
-            
-  
+
         }
+static void fibonacciR(int num, int a, int b) {
+    if (num == 0) {
+        return;
+    }
+
+    System.out.println(a);
+
+    fibonacciR(num - 1, b, a + b);
+}
+
+    
 
 }
                                                                                 

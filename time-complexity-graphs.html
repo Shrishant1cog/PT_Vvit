@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Complexity Graphs</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #607080;
+      --paper: #f6f2e9;
+      --panel: #fffdf8;
+      --line: #d9d2c4;
+      --accent: #d3543f;
+      --accent-dark: #8f3027;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(circle at top right, #f4c6a5 0, transparent 34%), var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    main { max-width: 1180px; margin: 0 auto; padding: 48px 22px 56px; }
+
+    header { max-width: 720px; margin-bottom: 30px; }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--accent-dark);
+      font: 700 0.78rem/1.2 Arial, sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 0; font-size: clamp(2.5rem, 7vw, 5.6rem); line-height: 0.92; }
+    header p { color: var(--muted); font-size: 1.08rem; line-height: 1.55; }
+
+    .graphs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      overflow: hidden;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      box-shadow: 0 10px 25px rgba(72, 49, 29, 0.07);
+    }
+
+    .card-head { padding: 18px 18px 4px; display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    h2 { margin: 0; font-size: 1.35rem; }
+    .growth { color: var(--accent-dark); font: 700 0.78rem/1.2 Arial, sans-serif; }
+    .card p { min-height: 43px; margin: 8px 18px 0; color: var(--muted); font: 0.88rem/1.45 Arial, sans-serif; }
+    svg { display: block; width: 100%; height: auto; padding: 12px 14px 15px; }
+    .gridline { stroke: #e6dfd2; stroke-width: 1; }
+    .axis { stroke: #9e9689; stroke-width: 1.2; }
+    .curve { fill: none; stroke: var(--accent); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+    .axis-label { fill: var(--muted); font: 11px Arial, sans-serif; }
+
+    .table-wrap { margin-top: 30px; padding: 20px; background: #17212b; color: #fffdf8; border-radius: 6px; }
+    h3 { margin: 0 0 14px; font-size: 1.35rem; }
+    table { width: 100%; border-collapse: collapse; font: 0.9rem Arial, sans-serif; }
+    th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid rgba(255, 253, 248, 0.18); }
+    th { color: #f4c6a5; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    td:first-child { color: #f4c6a5; font-weight: 700; }
+    .note { margin: 17px 0 0; color: #c9d0d4; font: 0.8rem/1.5 Arial, sans-serif; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Algorithms / Big O notation</p>
+      <h1>Time complexity, drawn.</h1>
+      <p>Each graph shows how an algorithm's work grows as the input size <strong>n</strong> increases. Curves are normalized within each card so every growth pattern stays visible.</p>
+    </header>
+
+    <section class="graphs" id="graphs" aria-label="Time complexity graphs"></section>
+
+    <section class="table-wrap">
+      <h3>Quick reference</h3>
+      <table>
+        <thead><tr><th>Complexity</th><th>Growth</th><th>Typical example</th></tr></thead>
+        <tbody>
+          <tr><td>O(1)</td><td>Constant</td><td>Read one array index</td></tr>
+          <tr><td>O(log n)</td><td>Very slow</td><td>Binary search</td></tr>
+          <tr><td>O(n)</td><td>Linear</td><td>One loop through an array</td></tr>
+          <tr><td>O(n log n)</td><td>Linearithmic</td><td>Efficient comparison sorting</td></tr>
+          <tr><td>O(n^2), O(n^3)</td><td>Polynomial</td><td>Two or three nested loops</td></tr>
+          <tr><td>O(2^n)</td><td>Exponential</td><td>Naive recursive Fibonacci</td></tr>
+          <tr><td>O(n!)</td><td>Factorial</td><td>Try every permutation</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Big O describes an upper-bound growth trend. Constants and smaller terms are ignored as n becomes large.</p>
+    </section>
+  </main>
+
+  <script>
+    const complexities = [
+      { name: "Constant", formula: "O(1)", description: "The work stays the same for every input size.", fn: n => 1, limit: 20 },
+      { name: "Logarithmic", formula: "O(log n)", description: "The input can grow greatly with only a small increase in work.", fn: n => Math.log2(n), limit: 20 },
+      { name: "Linear", formula: "O(n)", description: "Work grows in direct proportion to the input.", fn: n => n, limit: 20 },
+      { name: "Linearithmic", formula: "O(n log n)", description: "Slightly faster growth than linear time.", fn: n => n * Math.log2(n), limit: 20 },
+      { name: "Quadratic", formula: "O(n^2)", description: "Common when one loop runs inside another loop.", fn: n => n ** 2, limit: 20 },
+      { name: "Cubic", formula: "O(n^3)", description: "Common when three loops are nested together.", fn: n => n ** 3, limit: 14 },
+      { name: "Exponential", formula: "O(2^n)", description: "Work doubles as the input increases by one.", fn: n => 2 ** n, limit: 10 },
+      { name: "Factorial", formula: "O(n!)", description: "Work multiplies by every smaller input value.", fn: n => factorial(n), limit: 7 }
+    ];
+
+    function factorial(n) {
+      let result = 1;
+      for (let value = 2; value <= n; value++) result *= value;
+      return result;
+    }
+
+    function graphFor(item) {
+      const width = 360;
+      const height = 190;
+      const left = 39;
+      const right = 12;
+      const top = 14;
+      const bottom = 30;
+      const plotWidth = width - left - right;
+      const plotHeight = height - top - bottom;
+      const values = Array.from({ length: item.limit }, (_, index) => item.fn(index + 1));
+      const maximum = Math.max(...values, 1);
+      const points = values.map((value, index) => {
+        const x = left + (index / (values.length - 1 || 1)) * plotWidth;
+        const y = top + plotHeight - (value / maximum) * plotHeight;
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      }).join(" ");
+      const grid = [0, 0.25, 0.5, 0.75, 1].map(level => {
+        const y = top + plotHeight - level * plotHeight;
+        return `<line class="gridline" x1="${left}" y1="${y}" x2="${width - right}" y2="${y}" />`;
+      }).join("");
+      return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Graph of ${item.formula}">
+        ${grid}
+        <line class="axis" x1="${left}" y1="${top}" x2="${left}" y2="${top + plotHeight}" />
+        <line class="axis" x1="${left}" y1="${top + plotHeight}" x2="${width - right}" y2="${top + plotHeight}" />
+        <polyline class="curve" points="${points}" />
+        <text class="axis-label" x="${left - 28}" y="${top + 5}">work</text>
+        <text class="axis-label" x="${width - 20}" y="${height - 7}">n</text>
+      </svg>`;
+    }
+
+    document.getElementById("graphs").innerHTML = complexities.map(item => `
+      <article class="card">
+        <div class="card-head"><h2>${item.name}</h2><span class="growth">${item.formula}</span></div>
+        <p>${item.description}</p>
+        ${graphFor(item)}
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
