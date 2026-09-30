@@ -42,3 +42,47 @@ logarithimic time complexity
     :explaination
     O(log n)  
 example: binary search 
+encapsulation: accessing variable by calling method
+
+
+
+space complexity : total amount of memory space an algorithm requires to run to completion relative to the size of its input.
+
+
+
+
+
+
+inhertence:
+
+diamond problem:
+ 
+
+
+
+ abtraction,inheritance,encapsulation,polymorphism
+
+ inheritance
+
+
+
+
+
+
+
+linked list vs list
+have nodes    ,   have only one space to store 1 element in one address
+
+nodes have previous        it has only it own address and value
+and next nodes address   ,
+
+we should use next         
+keyword to accessing       
+next node                 ,
+
+
+
+
+adding an elemnt in between the nodes of linked list 
+worst case : O(n)
+best case: O(1)

@@ -1,11 +1,23 @@
-public class test {
+public class PT {
+ 
     public static void main(String[] args) {
+Dog dogs = new Dog();
+dogs.makeSound();
 
-fibonacciR(10,0,1);
 
         
         
     }
+
+    static  void displays(String a)
+    {
+        System.out.println(a);
+    }
+    static void displayi(int a)
+    {  
+        System.out.println(a);
+    }
+
     static void squaren(int a,int b){
        
         System.out.println((a*a)+(b*b)+(2*a*b));
@@ -46,9 +58,7 @@ fibonacciR(10,0,1);
             {
                 for(int k =0;k<10;k++)
                 {
-                    if(i*i*i+j*j*j+k*k*k == i*100+j*10+k)
-                    {
-                        System.out.println(i*100+j*10+k);
+                    if(i*i*i+j*j*j+k*k*k == i*100+j*10+k)                        System.out.println(i*100+j*10+k);
                     }
                 }
             }
@@ -261,15 +271,108 @@ static void fibonacciR(int num, int a, int b) {
     System.out.println(a);
 
     fibonacciR(num - 1, b, a + b);
+}                                            
+
+                                                                                                                                                                                                                                                      
+                    
+
 }
+class Student{
+
+    String name;
+    int rollno;
+    int age;
+
+    void main(){
+        
+        int naming = 9;
+        
+    }
+    static void constructor() {
+        
+    }
+
+}
+class student{
+    int name;
+    int rollno;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    String dept;
+    static void doexams(){
+
+
+    }
+}
+class shop{
+    String name;
+    String breed;
+    int age;
+    int weight;
+    void petSound(String type){
+        PT display = new PT();
+        if(type =="dog")
+        {
+            
+            
+            display.displays("bow Bow");
+
+        }
+        else
+        {
+            display.displays("Meow meow");
+        }
+    }
 
     
-
 }
-                                                                                
+class AnimalUser{
+    String Username = "Shrishant";
+    String AnimalName = "Puneeth";
+    String breed = "Pitbull";
+}
+class Dog extends AnimalUser{
+void makeSound(){
+
+
+    System.out.println("Woff Woff");
+    System.out.printf(AnimalName);
+}
+}
+class PolyOverLoad{
+    void welcome(){
+        System.out.println("Welcome to great VVIT");
+    }
+    void welcome(String name)
+    {
+        System.out.println("Welcome" + name);
+    }
+    //IN MAIN METHOD.
+    //PolyOverLoad poly = new PolyOverLoad();
+    //poly.welcome();
+    //poly.welcome("name");
+}
+class Animal 
+{
+    int name;
+    void makeSound(){
+        System.out.println("Animal sounds");
+    }
+}
+class Snake extends Animal
+{
+    @Override
+    void makeSound(){
+        System.out.println("Ssssszzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+    }
+
+
+
+
+    
+}
 
 
 
 
 
- 
+
+
