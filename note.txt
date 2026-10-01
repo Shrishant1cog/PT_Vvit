@@ -86,3 +86,23 @@ next node                 ,
 adding an elemnt in between the nodes of linked list 
 worst case : O(n)
 best case: O(1)
+
+
+collection framwork
+ArrayList
+LinkedList
+hash Map
+set,Stack
+,queue .etc  
+
+methods
+.get()
+.add()
+.remove()
+ etc etc etc
+
+
+
+ sets:
+ it has unique elements and does not have duplicate elements.
+ doesnt maintain order like list or LinkedList 

@@ -1,9 +1,17 @@
 public class classin {
     public static void main(String[] args) {
         defaults de = new defaults();
-        de.makeSound();             
-        
-        
+        de.makeSound();
+
+        tradewithvillager villagers = new tradewithvillager();
+        villagers.armormer();
+        villagers.librarian();
+        villagers.fletcher();
+        villagers.mason();
+        villagers.nitwit();
+        villagers.cartography();
+        villagers.toolsmith();
+        villagers.weaponsmith();
     }
     
 }
