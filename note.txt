@@ -1,108 +1,1115 @@
-To find the length of the Array
-----> Arrayname.length()
-size of list
------> listname.size();
+JAVA + DSA INTERVIEW NOTES
+==========================
 
-shallow compare (==) //compares memory address
-deep compare (.equals()) actual value
+1. ARRAY LENGTH VS COLLECTION SIZE
+----------------------------------
 
+Array:
+int[] arr = {3, 5, 6, 7};
 
-time complexity or Big(O)notation
-   ex : arr = {3,5,6,7}
+System.out.println(arr.length);
 
-   print(arr[3]);
+Output:
+4
 
-constant time complexity----------> O(1)
-    : explaination:
-    it directly prints arr[3] without knowing others 
-    have constant time or less
-    one iteration
-linear time complexity 
-    : explaination
-    time is dependent on no of iterations of single row and multuple colums
-    ----> time complexity is n 
-    ----->for one loop 
-    O(n)
-quadratic time complexity 
-    : explaination
-    time is depentant on no of iterations of multiple row and colums
-    ----> time complexity is square of n
-    ----->for two loops
-    O(n(square))
-factorial time complexity 
-    : explaination
-    time is depentant on n!
-    O(n!)
-exponential time complexity 
-    :explaination
-    n raise to n 
-    O(2 raise to n)
+Correct:
+arr.length
 
-logarithimic time complexity 
-    :explaination
-    O(log n)  
-example: binary search 
-encapsulation: accessing variable by calling method
+Incorrect:
+arr.length()
 
 
+ArrayList / Collection:
 
-space complexity : total amount of memory space an algorithm requires to run to completion relative to the size of its input.
+ArrayList<Integer> list = new ArrayList<>();
 
+list.add(10);
+list.add(20);
 
+System.out.println(list.size());
 
-
-
-
-inhertence:
-
-diamond problem:
- 
-
+Correct:
+list.size()
 
 
- abtraction,inheritance,encapsulation,polymorphism
+--------------------------------------------------
 
- inheritance
+2. == VS .EQUALS()
+------------------
 
+==:
+For objects, == compares whether two references point to
+the same object.
 
+Example:
 
+String a = new String("Hello");
+String b = new String("Hello");
 
+System.out.println(a == b);
 
-
-
-linked list vs list
-have nodes    ,   have only one space to store 1 element in one address
-
-nodes have previous        it has only it own address and value
-and next nodes address   ,
-
-we should use next         
-keyword to accessing       
-next node                 ,
-
+Output:
+false
 
 
+.equals():
+Used to compare the logical/content equality of objects,
+depending on the class implementation.
 
-adding an elemnt in between the nodes of linked list 
-worst case : O(n)
-best case: O(1)
+System.out.println(a.equals(b));
 
-
-collection framwork
-ArrayList
-LinkedList
-hash Map
-set,Stack
-,queue .etc  
-
-methods
-.get()
-.add()
-.remove()
- etc etc etc
+Output:
+true
 
 
+Interview point:
 
- sets:
- it has unique elements and does not have duplicate elements.
- doesnt maintain order like list or LinkedList 
+==        -> compares object references
+.equals() -> compares logical/content equality
+
+
+--------------------------------------------------
+
+3. TIME COMPLEXITY / BIG-O NOTATION
+-----------------------------------
+
+Time complexity describes how the running time of an
+algorithm grows as the input size increases.
+
+Common Big-O:
+
+O(1)       -> Constant
+O(log n)   -> Logarithmic
+O(n)       -> Linear
+O(n log n) -> Linearithmic
+O(n^2)     -> Quadratic
+O(2^n)     -> Exponential
+O(n!)      -> Factorial
+
+
+--------------------------------------------------
+
+4. O(1) - CONSTANT TIME
+-----------------------
+
+Example:
+
+int[] arr = {3, 5, 6, 7};
+
+System.out.println(arr[3]);
+
+Time Complexity:
+O(1)
+
+Explanation:
+The element can be accessed directly using its index.
+The number of other elements does not affect the access time.
+
+
+--------------------------------------------------
+
+5. O(n) - LINEAR TIME
+---------------------
+
+Example:
+
+for (int i = 0; i < n; i++) {
+    System.out.println(i);
+}
+
+Time Complexity:
+O(n)
+
+Explanation:
+The loop runs n times.
+
+If n = 10  -> 10 iterations
+If n = 100 -> 100 iterations
+
+As input increases, the number of operations increases
+linearly.
+
+
+--------------------------------------------------
+
+6. O(n^2) - QUADRATIC TIME
+--------------------------
+
+Example:
+
+for (int i = 0; i < n; i++) {
+
+    for (int j = 0; j < n; j++) {
+        System.out.println(i + " " + j);
+    }
+}
+
+Time Complexity:
+O(n^2)
+
+Explanation:
+There are two nested loops.
+
+Outer loop -> n times
+Inner loop -> n times
+
+Total:
+n * n = n^2
+
+Therefore:
+O(n^2)
+
+
+--------------------------------------------------
+
+7. O(log n) - LOGARITHMIC TIME
+------------------------------
+
+Example:
+Binary Search
+
+Binary search repeatedly divides the search space
+approximately in half.
+
+Example:
+
+16 -> 8 -> 4 -> 2 -> 1
+
+Time Complexity:
+O(log n)
+
+
+--------------------------------------------------
+
+8. O(2^n) - EXPONENTIAL TIME
+----------------------------
+
+Example:
+Naive recursive Fibonacci
+
+int fibonacci(int n) {
+
+    if (n <= 1) {
+        return n;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+Time Complexity:
+O(2^n)
+
+Important:
+
+2^n is exponential.
+
+n^n is NOT the standard meaning of exponential complexity.
+
+
+--------------------------------------------------
+
+9. O(n!) - FACTORIAL TIME
+-------------------------
+
+Factorial:
+
+n! = n * (n - 1) * (n - 2) * ... * 1
+
+Example:
+
+5! = 5 * 4 * 3 * 2 * 1
+   = 120
+
+Generating all permutations is a common example.
+
+Time Complexity:
+O(n!)
+
+
+--------------------------------------------------
+
+10. SPACE COMPLEXITY
+--------------------
+
+Space complexity describes how much additional memory
+an algorithm requires as the input size increases.
+
+Example:
+
+int sum = 0;
+
+for (int i = 0; i < n; i++) {
+    sum += i;
+}
+
+Only a few variables are used.
+
+Auxiliary Space:
+O(1)
+
+
+Example of O(n) space:
+
+int[] copy = new int[n];
+
+Memory increases with n.
+
+Space Complexity:
+O(n)
+
+
+--------------------------------------------------
+
+11. FOUR PILLARS OF OOP
+-----------------------
+
+1. Encapsulation
+2. Inheritance
+3. Polymorphism
+4. Abstraction
+
+
+--------------------------------------------------
+
+12. ENCAPSULATION
+-----------------
+
+Encapsulation means wrapping data and methods together
+and controlling access to the data.
+
+Usually variables are declared private and accessed
+through getter and setter methods.
+
+Example:
+
+class Student {
+
+    private String name;
+    private int age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+Interview definition:
+
+Encapsulation is the process of wrapping data and methods
+into a single unit and restricting direct access to the
+internal state of an object.
+
+
+--------------------------------------------------
+
+13. INHERITANCE
+---------------
+
+Inheritance allows one class to acquire properties and
+methods from another class.
+
+Example:
+
+class Animal {
+
+    void eat() {
+        System.out.println("Eating");
+    }
+}
+
+class Dog extends Animal {
+
+    void bark() {
+        System.out.println("Barking");
+    }
+}
+
+Example:
+
+Dog dog = new Dog();
+
+dog.eat();
+dog.bark();
+
+Animal = Parent / Superclass
+Dog    = Child / Subclass
+
+Keyword:
+extends
+
+
+--------------------------------------------------
+
+14. DIAMOND PROBLEM
+-------------------
+
+Diamond problem occurs when a class can inherit the same
+method through multiple paths.
+
+Concept:
+
+        A
+       / \
+      B   C
+       \ /
+        D
+
+Java does NOT support multiple inheritance using classes.
+
+Incorrect:
+
+class D extends B, C {
+}
+
+Java does support multiple inheritance through interfaces,
+with rules to resolve default-method conflicts.
+
+
+--------------------------------------------------
+
+15. ABSTRACTION
+---------------
+
+Abstraction means hiding unnecessary implementation details
+and showing only the important functionality.
+
+Example:
+
+abstract class Animal {
+
+    abstract void sound();
+
+    void eat() {
+        System.out.println("Eating");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Bark");
+    }
+}
+
+
+--------------------------------------------------
+
+16. POLYMORPHISM
+----------------
+
+Polymorphism means one interface/reference can represent
+different forms of objects.
+
+Example:
+
+class Animal {
+
+    void sound() {
+        System.out.println("Animal sound");
+    }
+}
+
+class Dog extends Animal {
+
+    @Override
+    void sound() {
+        System.out.println("Bark");
+    }
+}
+
+Animal animal = new Dog();
+
+animal.sound();
+
+Output:
+Bark
+
+This is runtime polymorphism / method overriding.
+
+
+--------------------------------------------------
+
+17. LINKED LIST
+---------------
+
+A linked list consists of nodes.
+
+Each node usually contains:
+
+1. Data
+2. Reference to the next node
+
+Example:
+
+[10 | next] -> [20 | next] -> [30 | next] -> null
+
+Node example:
+
+class Node {
+
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+
+--------------------------------------------------
+
+18. DOUBLY LINKED LIST
+----------------------
+
+A doubly linked list node contains:
+
+1. Previous reference
+2. Data
+3. Next reference
+
+Example:
+
+null <- [10] <-> [20] <-> [30] -> null
+
+
+--------------------------------------------------
+
+19. LINKED LIST INSERTION
+-------------------------
+
+Example:
+
+10 -> 20 -> 30
+
+Insert 15 between 10 and 20:
+
+10 -> 15 -> 20 -> 30
+
+Important:
+
+If we already have the required node/reference:
+Insertion can be O(1).
+
+If we need to search/traverse to find the position:
+It can take O(n).
+
+Therefore, do not say:
+
+"Linked list insertion is always O(1)."
+
+Correct:
+
+"Linked list insertion can be O(1) when the required
+position/node reference is already known."
+
+
+--------------------------------------------------
+
+20. ARRAYLIST VS LINKEDLIST
+---------------------------
+
+ArrayList:
+- Uses a dynamic array internally
+- Fast index access
+- get(index) -> O(1)
+- Search -> O(n)
+- Add at end -> O(1) amortized
+- Insert/remove in middle -> O(n)
+
+LinkedList:
+- Uses nodes connected through references
+- get(index) -> O(n)
+- Search -> O(n)
+- Insert/remove can be O(1) when node/position reference
+  is already available
+- Finding the position can take O(n)
+
+
+--------------------------------------------------
+
+21. JAVA COLLECTION FRAMEWORK
+-----------------------------
+
+The Java Collections Framework provides interfaces and
+classes for storing and manipulating groups of objects.
+
+Common collections:
+
+List
+    -> ArrayList
+    -> LinkedList
+
+Set
+    -> HashSet
+    -> LinkedHashSet
+    -> TreeSet
+
+Map
+    -> HashMap
+    -> LinkedHashMap
+    -> TreeMap
+
+Queue
+    -> PriorityQueue
+
+Deque
+    -> ArrayDeque
+
+
+--------------------------------------------------
+
+22. ARRAYLIST
+-------------
+
+Example:
+
+ArrayList<Integer> list = new ArrayList<>();
+
+list.add(10);
+list.add(20);
+list.add(30);
+
+System.out.println(list.get(1));
+
+Output:
+20
+
+Common methods:
+
+add()
+get()
+set()
+remove()
+contains()
+size()
+isEmpty()
+
+
+--------------------------------------------------
+
+23. LINKEDLIST
+--------------
+
+Example:
+
+LinkedList<Integer> list = new LinkedList<>();
+
+list.add(10);
+list.add(20);
+list.add(30);
+
+Special methods:
+
+list.addFirst(5);
+list.addLast(40);
+
+list.removeFirst();
+list.removeLast();
+
+
+--------------------------------------------------
+
+24. HASHMAP
+-----------
+
+HashMap stores data as key-value pairs.
+
+It is similar to a Python dictionary.
+
+Example:
+
+HashMap<String, Integer> map = new HashMap<>();
+
+map.put("Alice", 90);
+map.put("Bob", 85);
+
+System.out.println(map.get("Alice"));
+
+Output:
+90
+
+Common methods:
+
+put()
+get()
+remove()
+containsKey()
+containsValue()
+size()
+
+
+Important:
+
+Keys must be unique.
+
+Example:
+
+map.put("Alice", 90);
+map.put("Alice", 95);
+
+The second value replaces the first value.
+
+Alice -> 95
+
+
+--------------------------------------------------
+
+25. HASHMAP COLLISION
+---------------------
+
+A collision occurs when different keys map to the same
+hash-table bucket/index.
+
+Example:
+
+Key A -> Bucket 5
+Key B -> Bucket 5
+
+This is a collision.
+
+Important:
+
+Same value does NOT mean collision.
+
+Collision is related to keys/hash codes/buckets.
+
+
+--------------------------------------------------
+
+26. SET
+-------
+
+A Set does not allow duplicate elements.
+
+Example:
+
+HashSet<Integer> set = new HashSet<>();
+
+set.add(10);
+set.add(20);
+set.add(10);
+
+10 appears only once.
+
+Different Set implementations:
+
+HashSet:
+- No guaranteed iteration order
+
+LinkedHashSet:
+- Maintains insertion order
+
+TreeSet:
+- Maintains sorted order
+
+
+--------------------------------------------------
+
+27. STACK
+---------
+
+Stack follows:
+
+LIFO
+Last In, First Out
+
+Example:
+
+Push 10
+Push 20
+Push 30
+
+Top -> 30
+       20
+       10
+
+Java example:
+
+Deque<Integer> stack = new ArrayDeque<>();
+
+stack.push(10);
+stack.push(20);
+stack.push(30);
+
+System.out.println(stack.pop());
+
+Output:
+30
+
+
+--------------------------------------------------
+
+28. QUEUE
+---------
+
+Queue follows:
+
+FIFO
+First In, First Out
+
+Example:
+
+10 -> 20 -> 30
+
+10 enters first.
+10 leaves first.
+
+Java example:
+
+Queue<Integer> queue = new LinkedList<>();
+
+queue.add(10);
+queue.add(20);
+queue.add(30);
+
+System.out.println(queue.poll());
+
+Output:
+10
+
+
+--------------------------------------------------
+
+29. COMMON COLLECTION METHODS
+-----------------------------
+
+List:
+
+add()
+get()
+set()
+remove()
+contains()
+size()
+isEmpty()
+
+
+Set:
+
+add()
+remove()
+contains()
+size()
+isEmpty()
+
+
+Map:
+
+put()
+get()
+remove()
+containsKey()
+containsValue()
+size()
+
+
+Queue:
+
+offer()
+poll()
+peek()
+
+
+Deque:
+
+addFirst()
+addLast()
+removeFirst()
+removeLast()
+peekFirst()
+peekLast()
+
+
+--------------------------------------------------
+
+30. SQL
+-------
+
+SQL = Structured Query Language
+
+SQL is used to interact with relational databases.
+
+DBMS = Database Management System
+
+Examples of DBMS:
+
+MySQL
+PostgreSQL
+Oracle
+SQL Server
+
+
+--------------------------------------------------
+
+31. PRIMARY KEY
+---------------
+
+A primary key uniquely identifies each row in a table.
+
+Example:
+
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+
+Here:
+
+student_id = Primary Key
+
+A primary key:
+- Must be unique
+- Cannot contain NULL values
+
+
+--------------------------------------------------
+
+32. CRUD
+--------
+
+CRUD stands for:
+
+C -> Create
+R -> Read
+U -> Update
+D -> Delete
+
+
+CREATE:
+
+INSERT INTO Student (student_id, name, age)
+VALUES (1, 'Rahul', 22);
+
+
+READ:
+
+SELECT * FROM Student;
+
+
+UPDATE:
+
+UPDATE Student
+SET age = 23
+WHERE student_id = 1;
+
+
+DELETE:
+
+DELETE FROM Student
+WHERE student_id = 1;
+
+
+--------------------------------------------------
+
+33. DELETE VS TRUNCATE VS DROP
+------------------------------
+
+DELETE:
+- Removes rows
+- Table remains
+
+Example:
+
+DELETE FROM Student
+WHERE student_id = 1;
+
+
+TRUNCATE:
+- Removes all rows
+- Table structure remains
+
+Example:
+
+TRUNCATE TABLE Student;
+
+
+DROP:
+- Removes the table itself
+
+Example:
+
+DROP TABLE Student;
+
+
+Remember:
+
+DELETE   -> Remove rows
+TRUNCATE -> Remove all rows
+DROP     -> Remove table
+
+
+--------------------------------------------------
+
+34. MENU-DRIVEN APPLICATION
+---------------------------
+
+A menu-driven application gives the user different
+options to choose from.
+
+Example:
+
+===== Student Management System =====
+
+1. Add Student
+2. View Students
+3. Update Student
+4. Delete Student
+5. Exit
+
+Example Java program:
+
+import java.util.Scanner;
+
+public class MenuDrivenApp {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Add");
+            System.out.println("2. View");
+            System.out.println("3. Update");
+            System.out.println("4. Delete");
+            System.out.println("5. Exit");
+
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println("Add operation");
+                    break;
+
+                case 2:
+                    System.out.println("View operation");
+                    break;
+
+                case 3:
+                    System.out.println("Update operation");
+                    break;
+
+                case 4:
+                    System.out.println("Delete operation");
+                    break;
+
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+
+        } while (choice != 5);
+
+        scanner.close();
+    }
+}
+
+
+==================================================
+QUICK INTERVIEW REVISION
+==================================================
+
+Array:
+arr.length
+
+Collection:
+collection.size()
+
+Object reference comparison:
+==
+
+Logical/content comparison:
+.equals()
+
+OOP:
+1. Encapsulation
+2. Inheritance
+3. Polymorphism
+4. Abstraction
+
+Inheritance:
+extends
+
+Interface implementation:
+implements
+
+Constant:
+O(1)
+
+Logarithmic:
+O(log n)
+
+Linear:
+O(n)
+
+Linearithmic:
+O(n log n)
+
+Quadratic:
+O(n^2)
+
+Exponential:
+O(2^n)
+
+Factorial:
+O(n!)
+
+ArrayList:
+Dynamic array
+
+LinkedList:
+Nodes + references
+
+HashSet:
+Unique elements
+
+HashMap:
+Key-value pairs
+
+Stack:
+LIFO
+
+Queue:
+FIFO
+
+SQL:
+Structured Query Language
+
+DBMS:
+Database Management System
+
+Primary Key:
+Uniquely identifies a row
+
+CRUD:
+Create, Read, Update, Delete
+
+DELETE:
+Removes rows
+
+TRUNCATE:
+Removes all rows, keeps table
+
+DROP:
+Removes table

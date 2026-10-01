@@ -1,0 +1,1035 @@
+SQL PRACTICE NOTES
+==================
+
+
+1. CREATE TABLE
+---------------
+
+The CREATE TABLE statement is used to create a new table
+with specified columns and data types.
+
+Example:
+
+CREATE TABLE emp (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    salary INT
+);
+
+
+EMPLOYEE TABLE STRUCTURE
+------------------------
+
+id      -> INT          -> Unique employee ID
+name    -> VARCHAR(100) -> Employee name
+age     -> INT          -> Employee age
+salary  -> INT          -> Employee salary
+
+
+--------------------------------------------------
+
+2. INSERT INTO
+--------------
+
+The INSERT INTO statement is used to add records to a table.
+
+Example:
+
+INSERT INTO emp VALUES (1, 'jugs bunny', 79, 20000);
+INSERT INTO emp VALUES (2, 'tony stark', 48, 85000);
+INSERT INTO emp VALUES (3, 'steve rogers', 106, 78000);
+INSERT INTO emp VALUES (4, 'thor odinson', 1500, 90000);
+INSERT INTO emp VALUES (5, 'natasha romanoff', 39, 72000);
+INSERT INTO emp VALUES (6, 'clint barton', 55, 68000);
+INSERT INTO emp VALUES (7, 'bruce banner', 54, 82000);
+INSERT INTO emp VALUES (8, 'peter parker', 21, 45000);
+INSERT INTO emp VALUES (9, 'wanda maximoff', 32, 75000);
+INSERT INTO emp VALUES (10, 'sam wilson', 40, 70000);
+INSERT INTO emp VALUES (11, 'bucky barnes', 106, 65000);
+INSERT INTO emp VALUES (12, 'monkey d luffy', 19, 50000);
+INSERT INTO emp VALUES (13, 'roronoa zoro', 21, 48000);
+INSERT INTO emp VALUES (14, 'nami', 20, 46000);
+INSERT INTO emp VALUES (15, 'usopp', 19, 40000);
+INSERT INTO emp VALUES (16, 'sanji vinsmoke', 21, 55000);
+INSERT INTO emp VALUES (17, 'nico robin', 30, 52000);
+INSERT INTO emp VALUES (18, 'franky', 36, 47000);
+INSERT INTO emp VALUES (19, 'brook', 90, 43000);
+INSERT INTO emp VALUES (20, 'tony tony chopper', 17, 35000);
+INSERT INTO emp VALUES (21, 'jimbe', 46, 60000);
+
+
+--------------------------------------------------
+
+3. SELECT
+---------
+
+The SELECT statement is used to retrieve data from a table.
+
+
+Display all employees:
+
+SELECT *
+FROM emp;
+
+
+Display specific columns:
+
+SELECT name, salary
+FROM emp;
+
+
+--------------------------------------------------
+
+4. WHERE CLAUSE
+---------------
+
+The WHERE clause is used to filter records based on
+a specified condition.
+
+
+Example:
+
+SELECT *
+FROM emp
+WHERE age > 25;
+
+
+This returns employees whose age is greater than 25.
+
+
+COMMON COMPARISON OPERATORS
+---------------------------
+
+=      -> Equal to
+>      -> Greater than
+<      -> Less than
+>=     -> Greater than or equal to
+<=     -> Less than or equal to
+<>     -> Not equal to
+
+
+Example:
+
+SELECT *
+FROM emp
+WHERE salary > 50000;
+
+
+--------------------------------------------------
+
+5. STUDENT TABLE
+----------------
+
+Create a student table:
+
+CREATE TABLE stud (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    usn VARCHAR(50),
+    number VARCHAR(20)
+);
+
+
+STUDENT TABLE STRUCTURE
+-----------------------
+
+id      -> INT           -> Unique student ID
+name    -> VARCHAR(100)  -> Student name
+usn     -> VARCHAR(50)   -> University/college registration number
+number  -> VARCHAR(20)   -> Student contact number
+
+
+IMPORTANT:
+
+Phone numbers are usually stored as VARCHAR instead of INT.
+
+Reason:
+
+- Phone numbers can contain country codes.
+- Phone numbers can start with 0.
+- Phone numbers may contain +, -, spaces, etc.
+- We normally do not perform mathematical operations on phone numbers.
+
+
+--------------------------------------------------
+
+6. DELETE
+---------
+
+The DELETE statement is used to remove records from a table.
+
+
+Delete one employee:
+
+DELETE FROM emp
+WHERE id = 5;
+
+
+Delete one student:
+
+DELETE FROM stud
+WHERE id = 5;
+
+
+IMPORTANT:
+
+The WHERE clause specifies which records should be deleted.
+
+
+WARNING:
+
+DELETE FROM emp;
+
+This deletes ALL records from the emp table.
+
+Always check the WHERE condition before executing DELETE.
+
+
+--------------------------------------------------
+
+7. DROP TABLE
+-------------
+
+DROP TABLE permanently removes the table and its data.
+
+
+Example:
+
+DROP TABLE emp;
+
+
+After this command:
+
+- The emp table is removed.
+- The data inside the table is removed.
+- The table structure is removed.
+
+
+DELETE vs DROP
+--------------
+
+DELETE:
+-> Removes records/rows
+-> Table remains
+
+DROP TABLE:
+-> Removes the entire table
+-> Table structure is also removed
+
+
+Example:
+
+DELETE FROM emp
+WHERE id = 5;
+
+
+Only employee with id = 5 is deleted.
+
+
+DROP TABLE emp;
+
+
+The entire emp table is deleted.
+
+
+--------------------------------------------------
+
+8. CUSTOMERS TABLE
+------------------
+
+Display all customers:
+
+SELECT *
+FROM customers;
+
+
+Display specific columns:
+
+SELECT first_name, country
+FROM customers;
+
+
+--------------------------------------------------
+
+9. NOT OPERATOR
+---------------
+
+The NOT operator reverses a condition.
+
+
+Example:
+
+SELECT *
+FROM customers
+WHERE NOT (country = 'USA');
+
+
+This selects customers whose country is NOT USA.
+
+
+Equivalent query:
+
+SELECT *
+FROM customers
+WHERE country <> 'USA';
+
+
+NOT:
+-> Reverses a condition
+
+
+--------------------------------------------------
+
+10. OR OPERATOR
+---------------
+
+The OR operator returns records when at least one
+condition is true.
+
+
+Example:
+
+SELECT *
+FROM customers
+WHERE country = 'USA'
+   OR country = 'UK';
+
+
+This selects customers from either:
+
+USA
+OR
+UK
+
+
+Example:
+
+SELECT *
+FROM customers
+WHERE country = 'USA'
+   OR first_name = 'John';
+
+
+A record is returned if either condition is true.
+
+
+--------------------------------------------------
+
+11. AND OPERATOR
+----------------
+
+The AND operator returns records only when ALL conditions
+are true.
+
+
+Example:
+
+SELECT *
+FROM customers
+WHERE country = 'USA'
+  AND first_name = 'John';
+
+
+Both conditions must be true:
+
+country = USA
+AND
+first_name = John
+
+
+Example:
+
+SELECT *
+FROM emp
+WHERE age > 25
+  AND salary > 50000;
+
+
+This returns employees who:
+
+- Are older than 25
+- AND have a salary greater than 50000
+
+
+--------------------------------------------------
+
+12. DELETE FROM CUSTOMERS
+-------------------------
+
+To delete a specific customer:
+
+DELETE FROM customers
+WHERE first_name = 'Betty';
+
+
+To verify the remaining records:
+
+SELECT *
+FROM customers;
+
+
+IMPORTANT:
+
+If multiple customers have the first name 'Betty',
+all matching records may be deleted.
+
+Using a unique ID is usually safer:
+
+DELETE FROM customers
+WHERE id = 5;
+
+
+--------------------------------------------------
+
+13. SQL OPERATORS
+-----------------
+
+COMPARISON OPERATORS:
+
+=      -> Equal to
+>      -> Greater than
+<      -> Less than
+>=     -> Greater than or equal to
+<=     -> Less than or equal to
+<>     -> Not equal to
+
+
+LOGICAL OPERATORS:
+
+AND
+OR
+NOT
+
+
+--------------------------------------------------
+
+14. SQL OPERATOR EXAMPLES
+-------------------------
+
+GREATER THAN:
+
+SELECT *
+FROM emp
+WHERE age > 25;
+
+
+EQUAL TO:
+
+SELECT *
+FROM customers
+WHERE country = 'USA';
+
+
+NOT EQUAL TO:
+
+SELECT *
+FROM customers
+WHERE country <> 'USA';
+
+
+AND:
+
+SELECT *
+FROM customers
+WHERE country = 'USA'
+  AND first_name = 'John';
+
+
+OR:
+
+SELECT *
+FROM customers
+WHERE country = 'USA'
+   OR country = 'UK';
+
+
+NOT:
+
+SELECT *
+FROM customers
+WHERE NOT (country = 'USA');
+
+
+--------------------------------------------------
+
+15. IMPORTANT SQL COMMANDS
+--------------------------
+
+CREATE TABLE
+-> Creates a new table
+
+INSERT INTO
+-> Adds records
+
+SELECT
+-> Retrieves records
+
+WHERE
+-> Filters records
+
+DELETE
+-> Deletes records
+
+DROP TABLE
+-> Deletes the entire table
+
+AND
+-> All conditions must be true
+
+OR
+-> At least one condition must be true
+
+NOT
+-> Reverses a condition
+
+
+--------------------------------------------------
+
+16. BASIC SQL COMMAND CATEGORIES
+--------------------------------
+
+DDL - DATA DEFINITION LANGUAGE
+
+CREATE
+ALTER
+DROP
+TRUNCATE
+
+
+DML - DATA MANIPULATION LANGUAGE
+
+INSERT
+UPDATE
+DELETE
+
+
+DQL - DATA QUERY LANGUAGE
+
+SELECT
+
+
+IMPORTANT:
+
+SQL commands are often grouped into categories such as
+DDL, DML, and DQL.
+
+
+--------------------------------------------------
+
+17. UPDATE STATEMENT
+--------------------
+
+The UPDATE statement is used to modify existing records.
+
+Example:
+
+UPDATE emp
+SET salary = 90000
+WHERE id = 2;
+
+
+This changes the salary of employee with id = 2.
+
+
+Update multiple columns:
+
+UPDATE emp
+SET age = 30,
+    salary = 60000
+WHERE id = 8;
+
+
+IMPORTANT:
+
+Always use WHERE when you want to update specific records.
+
+Without WHERE:
+
+UPDATE emp
+SET salary = 90000;
+
+This may update EVERY employee.
+
+
+--------------------------------------------------
+
+18. ALTER TABLE
+---------------
+
+ALTER TABLE is used to modify the structure of an
+existing table.
+
+
+Add a column:
+
+ALTER TABLE emp
+ADD department VARCHAR(50);
+
+
+Now the emp table has an additional column:
+
+department
+
+
+--------------------------------------------------
+
+19. DISTINCT
+------------
+
+DISTINCT is used to remove duplicate values from
+the result.
+
+
+Example:
+
+SELECT DISTINCT country
+FROM customers;
+
+
+This returns each country only once.
+
+
+--------------------------------------------------
+
+20. ORDER BY
+------------
+
+ORDER BY is used to sort the result.
+
+
+Ascending order:
+
+SELECT *
+FROM emp
+ORDER BY salary ASC;
+
+
+Descending order:
+
+SELECT *
+FROM emp
+ORDER BY salary DESC;
+
+
+ASC:
+-> Ascending order
+
+
+DESC:
+-> Descending order
+
+
+--------------------------------------------------
+
+21. LIMIT
+---------
+
+LIMIT is used to restrict the number of records returned.
+
+Example:
+
+SELECT *
+FROM emp
+LIMIT 5;
+
+
+This returns only 5 records.
+
+NOTE:
+
+LIMIT syntax is supported by databases such as MySQL
+and PostgreSQL. Other database systems may use different
+syntax.
+
+
+--------------------------------------------------
+
+22. COUNT()
+-----------
+
+COUNT() is used to count records.
+
+
+Example:
+
+SELECT COUNT(*)
+FROM emp;
+
+
+This returns the number of employees.
+
+
+Example:
+
+SELECT COUNT(*)
+FROM emp
+WHERE age > 25;
+
+
+This counts employees whose age is greater than 25.
+
+
+--------------------------------------------------
+
+23. MIN(), MAX(), AVG(), SUM()
+------------------------------
+
+MIN():
+Returns the smallest value.
+
+SELECT MIN(salary)
+FROM emp;
+
+
+MAX():
+Returns the largest value.
+
+SELECT MAX(salary)
+FROM emp;
+
+
+AVG():
+Returns the average value.
+
+SELECT AVG(salary)
+FROM emp;
+
+
+SUM():
+Returns the total value.
+
+SELECT SUM(salary)
+FROM emp;
+
+
+--------------------------------------------------
+
+24. SQL CLAUSE ORDER
+--------------------
+
+A basic SELECT query is commonly written in this order:
+
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+
+
+Example:
+
+SELECT department, AVG(salary)
+FROM emp
+WHERE age > 25
+GROUP BY department
+HAVING AVG(salary) > 50000
+ORDER BY AVG(salary) DESC
+LIMIT 5;
+
+
+Do not confuse the written order with the database's
+logical query-processing order.
+
+
+--------------------------------------------------
+
+25. HOMEWORK
+------------
+
+Practice the following:
+
+1. Create a table.
+
+2. Insert at least 10 records.
+
+3. Display all records.
+
+4. Display selected columns.
+
+5. Use WHERE to filter records.
+
+6. Practice comparison operators:
+
+   =
+   >
+   <
+   >=
+   <=
+   <>
+
+7. Practice AND.
+
+8. Practice OR.
+
+9. Practice NOT.
+
+10. Update a specific record.
+
+11. Delete a specific record.
+
+12. Practice ORDER BY.
+
+13. Practice DISTINCT.
+
+14. Practice COUNT().
+
+15. Practice MIN().
+
+16. Practice MAX().
+
+17. Practice AVG().
+
+18. Practice SUM().
+
+19. Practice DROP TABLE.
+
+
+--------------------------------------------------
+
+26. MINI PROJECT
+----------------
+
+Create an SQL database for a small application.
+
+Example projects:
+
+- Student Management System
+- Employee Management System
+- Library Management System
+- Hospital Management System
+- Bank Management System
+- E-commerce System
+
+
+The project should contain:
+
+1. CREATE TABLE queries
+
+2. INSERT queries
+
+3. SELECT queries
+
+4. WHERE conditions
+
+5. AND operator
+
+6. OR operator
+
+7. NOT operator
+
+8. UPDATE queries
+
+9. DELETE queries
+
+10. ORDER BY
+
+11. Aggregate functions
+
+12. DROP / ALTER practice
+
+
+--------------------------------------------------
+
+27. GIT REPOSITORY STRUCTURE
+----------------------------
+
+Recommended project structure:
+
+Mini-Project/
+|
+|-- Java Application/
+|   |
+|   |-- src/
+|       |
+|       |-- Main.java
+|       |-- Employee.java
+|       |-- EmployeeService.java
+|
+|-- SQL/
+|   |
+|   |-- create_tables.sql
+|   |-- insert_data.sql
+|   |-- queries.sql
+|
+|-- README.md
+
+
+The repository should contain:
+
+Java application code
++
+SQL queries/database scripts
++
+README.md
+
+
+This keeps the project organized and easy to maintain.
+
+
+==================================================
+QUICK SQL INTERVIEW REVISION
+==================================================
+
+CREATE TABLE
+-> Creates a table
+
+
+INSERT INTO
+-> Adds data
+
+
+SELECT
+-> Retrieves data
+
+
+WHERE
+-> Filters data
+
+
+UPDATE
+-> Modifies existing data
+
+
+DELETE
+-> Removes rows
+
+
+DROP TABLE
+-> Removes the entire table
+
+
+TRUNCATE
+-> Removes all rows but keeps the table structure
+
+
+ALTER TABLE
+-> Changes table structure
+
+
+DISTINCT
+-> Removes duplicate results
+
+
+ORDER BY
+-> Sorts results
+
+
+GROUP BY
+-> Groups rows
+
+
+HAVING
+-> Filters groups
+
+
+COUNT()
+-> Counts rows
+
+
+SUM()
+-> Calculates total
+
+
+AVG()
+-> Calculates average
+
+
+MIN()
+-> Finds minimum value
+
+
+MAX()
+-> Finds maximum value
+
+
+AND
+-> All conditions must be true
+
+
+OR
+-> At least one condition must be true
+
+
+NOT
+-> Reverses a condition
+
+
+PRIMARY KEY
+-> Uniquely identifies a row
+
+
+==================================================
+IMPORTANT DIFFERENCES
+==================================================
+
+DELETE vs TRUNCATE vs DROP
+
+DELETE:
+-> Deletes selected rows
+-> WHERE can be used
+-> Table remains
+
+TRUNCATE:
+-> Deletes all rows
+-> Table remains
+-> WHERE cannot be used
+
+DROP:
+-> Deletes the entire table
+-> Structure is also removed
+
+
+WHERE vs HAVING
+
+WHERE:
+-> Filters rows before grouping
+
+HAVING:
+-> Filters groups after GROUP BY
+
+
+AND vs OR
+
+AND:
+-> All conditions must be true
+
+OR:
+-> At least one condition must be true
+
+
+PRIMARY KEY
+
+-> Uniquely identifies each row
+-> Cannot be NULL
+-> Values must be unique
+
+
+==================================================
+BASIC SQL FLOW TO REMEMBER
+==================================================
+
+CREATE TABLE
+      ↓
+INSERT INTO
+      ↓
+SELECT
+      ↓
+WHERE
+      ↓
+UPDATE
+      ↓
+DELETE
+
+
+For more advanced queries:
+
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
